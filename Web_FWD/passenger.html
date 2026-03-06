@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Passenger Details</title>
+
+<style>
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(to right, #1d3557, #457b9d);
+text-align:center;
+color:white;
+}
+
+.container{
+background:white;
+width:500px;
+margin:60px auto;
+padding:40px;
+border-radius:20px;
+color:black;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+margin-top:30px;
+}
+
+.summary{
+margin-bottom:25px;
+font-weight:bold;
+line-height:1.6;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input, select{
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:25px;
+background:#1d3557;
+color:white;
+cursor:pointer;
+font-size:15px;
+transition:0.3s;
+}
+
+button:hover{
+background:#e63946;
+}
+
+.back-btn{
+margin-top:15px;
+display:inline-block;
+padding:8px 20px;
+border-radius:20px;
+border:2px solid #1d3557;
+color:#1d3557;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#1d3557;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Passenger Details</h1>
+
+<div class="container">
+
+<div class="summary">
+Bus: <span id="bus"></span><br>
+Seats: <span id="seats"></span><br>
+Total Amount: ₹<span id="total"></span>
+</div>
+
+<form id="passengerForm" onsubmit="goPayment(event)">
+
+<div id="passengerFields"></div>
+
+<input type="tel" placeholder="Mobile Number" required>
+
+<button type="submit">Proceed to Payment</button>
+
+</form>
+
+<a href="javascript:history.back()" class="back-btn">Back</a>
+
+</div>
+
+<script>
+
+let params = new URLSearchParams(window.location.search);
+
+let bus = params.get("bus");
+let seats = params.get("seats");
+let total = params.get("total");
+
+let seatArray = seats.split(",");
+
+document.getElementById("bus").innerText = decodeURIComponent(bus);
+document.getElementById("seats").innerText = seatArray.join(", ");
+document.getElementById("total").innerText = total;
+
+let container = document.getElementById("passengerFields");
+
+seatArray.forEach((seat,index)=>{
+
+container.innerHTML += `
+<h3>Passenger ${index+1} (Seat ${seat})</h3>
+
+<input type="text" placeholder="Passenger Name" required>
+
+<input type="number" placeholder="Age" required>
+
+<select required>
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+`;
+
+});
+
+function goPayment(event){
+
+event.preventDefault();
+
+window.location.href =
+"payment.html?bus=" + encodeURIComponent(bus) +
+"&seats=" + encodeURIComponent(seatArray.join(",")) +
+"&total=" + total;
+}
+
+</script>
+
+</body>
+</html>

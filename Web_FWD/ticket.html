@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ticket Confirmation</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #1d3557, #457b9d);
+    text-align:center;
+    color:white;
+}
+
+.ticket-box{
+    background:white;
+    width:600px;
+    margin:80px auto;
+    padding:40px;
+    border-radius:20px;
+    color:black;
+}
+
+h2{
+    color:green;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background:#1d3557;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e63946;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Booking Confirmed 🎉</h1>
+
+<div class="ticket-box">
+
+<h2>Your Ticket</h2>
+
+<p><b>Ticket ID:</b> <span id="ticket"></span></p>
+<p><b>Bus:</b> <span id="bus"></span></p>
+<p><b>Seats:</b> <span id="seats"></span></p>
+<p><b>Total Paid:</b> ₹<span id="total"></span></p>
+
+<button onclick="goHome()">Back to Home</button>
+
+</div>
+
+<script>
+let params = new URLSearchParams(window.location.search);
+
+document.getElementById("ticket").innerText = params.get("ticket");
+document.getElementById("bus").innerText = decodeURIComponent(params.get("bus"));
+document.getElementById("seats").innerText = decodeURIComponent(params.get("seats"));
+document.getElementById("total").innerText = params.get("total");
+
+function goHome(){
+    window.location.href = "main.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Bus Tickets</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="book-wrapper">
+
+<div class="booking-card">
+
+<h1>Find Your Bus</h1>
+<p class="subtitle">Search routes and book your journey easily</p>
+
+<form action="buses.html" onsubmit="savePassengers()">
+
+<div class="input-group">
+
+<select required>
+<option value="">Select From</option>
+<option>Hyderabad</option>
+<option>Vijayawada</option>
+<option>Chennai</option>
+<option>Bangalore</option>
+<option>Visakhapatnam</option>
+<option>Kakinada</option>
+<option>Kurnool</option>
+</select>
+
+<select required>
+<option value="">Select To</option>
+<option>Hyderabad</option>
+<option>Vijayawada</option>
+<option>Chennai</option>
+<option>Bangalore</option>
+<option>Visakhapatnam</option>
+<option>Kakinada</option>
+<option>Kurnool</option>
+</select>
+
+<input type="date" required>
+
+<select required id="passengers">
+<option value="">Passengers</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+</select>
+
+</div>
+
+<button type="submit">Search Buses</button>
+
+</form>
+
+<a href="main.html" class="back-btn">Back</a>
+
+</div>
+
+</div>
+
+<script>
+
+function savePassengers(){
+
+let passengers = document.getElementById("passengers").value;
+
+localStorage.setItem("passengers", passengers);
+
+}
+
+</script>
+
+</body>
+</html>

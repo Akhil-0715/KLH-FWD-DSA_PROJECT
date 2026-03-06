@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Seat</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #1d3557, #457b9d);
+    text-align:center;
+    color:white;
+}
+
+h1{
+    padding-top:20px;
+}
+
+#busName{
+    margin-top:5px;
+    font-weight:bold;
+}
+
+.bus-layout{
+    background:white;
+    width:850px;
+    margin:30px auto;
+    padding:30px;
+    border-radius:20px;
+    color:black;
+}
+
+.section-title{
+    font-weight:bold;
+    margin:20px 0 10px 0;
+    font-size:18px;
+    color:#1d3557;
+}
+
+.row{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.seat{
+    width:60px;
+    height:45px;
+    border:2px solid #1d3557;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-weight:bold;
+    background:#f4f6f9;
+    transition:0.2s;
+}
+
+.seat:hover{
+    background:#e63946;
+    color:white;
+}
+
+.seat.selected{
+    background:#2a9d8f;
+    color:white;
+}
+
+.seat.booked{
+    background:#ccc;
+    border-color:#ccc;
+    cursor:not-allowed;
+}
+
+.info{
+    margin-top:20px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 30px;
+    border:none;
+    border-radius:25px;
+    background:#1d3557;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#e63946;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Select Your Seat</h1>
+<h3 id="busName"></h3>
+
+<div class="bus-layout">
+
+<div class="section-title">Upper</div>
+
+<div class="row">
+    <div class="seat" onclick="selectSeat(this)">U1</div>
+    <div class="seat" onclick="selectSeat(this)">U2</div>
+    <div class="seat booked">U3</div>
+    <div class="seat" onclick="selectSeat(this)">U4</div>
+    <div class="seat" onclick="selectSeat(this)">U5</div>
+    <div class="seat booked">U6</div>
+</div>
+
+<div class="section-title">Lower</div>
+
+<div class="row">
+    <div class="seat" onclick="selectSeat(this)">L1</div>
+    <div class="seat booked">L2</div>
+    <div class="seat" onclick="selectSeat(this)">L3</div>
+    <div class="seat" onclick="selectSeat(this)">L4</div>
+    <div class="seat booked">L5</div>
+    <div class="seat" onclick="selectSeat(this)">L6</div>
+</div>
+
+<div class="info">
+    Selected Seats: <span id="selectedSeats">None</span><br>
+    Total Price: ₹<span id="totalPrice">0</span>
+</div>
+
+<button onclick="goNext()">Continue</button>
+
+</div>
+<script>
+
+let params = new URLSearchParams(window.location.search);
+let bus = params.get("bus");
+let price = params.get("price");
+
+let passengerLimit = parseInt(localStorage.getItem("passengers")) || 1;
+
+let pricePerSeat = 0;
+
+if(bus){
+document.getElementById("busName").innerText =
+"Bus: " + decodeURIComponent(bus);
+}
+
+if(price && !isNaN(price)){
+pricePerSeat = parseInt(price);
+}
+
+let selectedSeats = [];
+
+function selectSeat(element){
+
+if(element.classList.contains("booked")) return;
+
+let seatNumber = element.innerText;
+
+if(element.classList.contains("selected")){
+
+element.classList.remove("selected");
+selectedSeats = selectedSeats.filter(seat => seat !== seatNumber);
+
+}else{
+
+if(selectedSeats.length >= passengerLimit){
+alert("You can only select " + passengerLimit + " seats.");
+return;
+}
+
+element.classList.add("selected");
+selectedSeats.push(seatNumber);
+
+}
+
+updateInfo();
+}
+
+function updateInfo(){
+
+if(selectedSeats.length === 0){
+document.getElementById("selectedSeats").innerText = "None";
+document.getElementById("totalPrice").innerText = 0;
+}
+else{
+document.getElementById("selectedSeats").innerText =
+selectedSeats.join(", ");
+
+document.getElementById("totalPrice").innerText =
+selectedSeats.length * pricePerSeat;
+}
+
+}
+
+function goNext(){
+
+if(selectedSeats.length === 0){
+alert("Please select at least one seat!");
+return;
+}
+
+if(selectedSeats.length > passengerLimit){
+alert("Seat count exceeds passenger count.");
+return;
+}
+
+let total = selectedSeats.length * pricePerSeat;
+
+window.location.href =
+"passenger.html?bus=" + encodeURIComponent(bus) +
+"&seats=" + encodeURIComponent(selectedSeats.join(",")) +
+"&total=" + total;
+
+}
+
+</script>
+
+</body>
+</html>

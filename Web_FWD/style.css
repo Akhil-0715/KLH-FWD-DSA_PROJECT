@@ -1,0 +1,228 @@
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+}
+
+/* ================= HERO ================= */
+
+header{
+    height:100vh;
+    background:url("bus.jpeg") center/cover no-repeat;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+/* Dark overlay */
+header::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    top:0;
+    left:0;
+}
+
+header *{
+    position:relative;
+    z-index:1;
+}
+
+/* Title */
+.main-title{
+    font-size:55px;
+    margin-bottom:40px;
+    letter-spacing:2px;
+}
+
+/* Navigation Glass Bar */
+.nav-bar{
+    display:flex;
+    gap:40px;
+    padding:20px 50px;
+    border-radius:50px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+.nav-bar a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.nav-bar a:hover{
+    color:#ff4d4d;
+}
+
+/* ================= CONTENT SECTIONS ================= */
+
+section{
+    width:70%;
+    margin:80px auto;
+    padding:50px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+section h2{
+    color:#1d3557;
+    margin-bottom:20px;
+}
+
+/* Form */
+form{
+    width:350px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+}
+
+input, textarea{
+    padding:12px;
+    margin-bottom:20px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    background:#1d3557;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e63946;
+}
+
+
+/* ================= BOOK PAGE HERO ================= */
+
+
+/* ================= BOOK PAGE PREMIUM ================= */
+
+/* ================= ULTRA PREMIUM BOOK PAGE ================= */
+
+/* ================= ULTRA POLISHED BOOK PAGE ================= */
+/* ================= BOOK PAGE - NIGHT VIEW PREMIUM ================= */
+
+.book-wrapper{
+    height:100vh;
+    background:url("nightview.png") center/cover no-repeat;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.book-wrapper::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.5)
+    );
+    top:0;
+    left:0;
+}
+
+/* Premium Glass Card */
+.booking-card{
+    position:relative;
+    z-index:1;
+    width:460px;
+    padding:55px 45px;
+    border-radius:30px;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(15px);
+    text-align:center;
+    color:white;
+    box-shadow:0 25px 80px rgba(0,0,0,0.8);
+}
+
+.booking-card h1{
+    margin-bottom:10px;
+    font-size:36px;
+    letter-spacing:1px;
+}
+
+.subtitle{
+    font-size:14px;
+    margin-bottom:35px;
+    opacity:0.85;
+}
+
+/* Input layout */
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.booking-card select,
+.booking-card input{
+    padding:14px 18px;
+    border-radius:12px;
+    border:none;
+    font-size:14px;
+    background:rgba(255,255,255,0.9);
+    outline:none;
+}
+
+/* GOLD PREMIUM BUTTON */
+.booking-card button{
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,#f9a825,#ffb300);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s ease;
+    letter-spacing:0.5px;
+}
+
+.booking-card button:hover{
+    background:linear-gradient(135deg,#ffd54f,#ffca28);
+    transform:scale(1.05);
+}
+
+/* Back Button */
+
+.back-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 25px;
+    border-radius:25px;
+    text-decoration:none;
+    background:transparent;
+    border:2px solid #ffb300;
+    color:#ffb300;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#ffb300;
+    color:black;
+}

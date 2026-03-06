@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buses</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #1d3557, #457b9d);
+    padding:50px 0;
+}
+
+h1{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+section{
+    width:65%;
+    margin:20px auto;
+    background:white;
+    padding:25px 30px;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+section h3{
+    margin:0;
+    color:#1d3557;
+}
+
+section p{
+    margin:5px 0 0 0;
+    color:gray;
+    font-size:14px;
+}
+
+.price-box{
+    font-size:18px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+button{
+    padding:8px 18px;
+    border:none;
+    border-radius:25px;
+    background:#1d3557;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#e63946;
+}
+
+a{
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Available Buses</h1>
+
+<section>
+    <div>
+        <h3>Orange Travels</h3>
+        <p>AC Sleeper + Seater</p>
+    </div>
+    <div class="price-box">
+        ₹1100
+        <a href="seats.html?bus=Orange%20Travels&price=1100">
+            <button>Book Ticket</button>
+        </a>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>APSRTC</h3>
+        <p>AC Sleeper + Seater</p>
+    </div>
+    <div class="price-box">
+        ₹1200
+        <a href="seats.html?bus=APSRTC&price=1200">
+            <button>Book Ticket</button>
+        </a>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>VRL Travels</h3>
+        <p>AC Sleeper</p>
+    </div>
+    <div class="price-box">
+        ₹1000
+        <a href="seats.html?bus=VRL%20Travels&price=1000">
+            <button>Book Ticket</button>
+        </a>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>SRS Travels</h3>
+        <p>Non-AC Seater</p>
+    </div>
+    <div class="price-box">
+        ₹850
+        <a href="seats.html?bus=SRS%20Travels&price=850">
+            <button>Book Ticket</button>
+        </a>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>Kaveri Travels</h3>
+        <p>AC Sleeper</p>
+    </div>
+    <div class="price-box">
+        ₹1350
+        <a href="seats.html?bus=Kaveri%20Travels&price=1350">
+            <button>Book Ticket</button>
+        </a>
+    </div>
+</section>
+
+</body>
+</html>
