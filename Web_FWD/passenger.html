@@ -1,93 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Payment</title>
+<title>Passenger Details</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
 background:linear-gradient(to right,#1d3557,#457b9d);
+text-align:center;
 color:white;
 }
 
-h1{
-text-align:center;
-margin-top:40px;
-}
-
-.payment-wrapper{
-width:900px;
-margin:40px auto;
-display:flex;
-gap:30px;
-}
-
-/* LEFT PAYMENT BOX */
-
-.payment-box{
-flex:2;
+.container{
 background:white;
-padding:30px;
-border-radius:15px;
+width:450px;
+margin:80px auto;
+padding:40px;
+border-radius:20px;
 color:black;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-.payment-method{
-margin-bottom:25px;
-}
-
-.payment-method h3{
-margin-bottom:10px;
-}
-
-.payment-method label{
-display:block;
-margin:10px 0;
-cursor:pointer;
-}
-
-/* CARD FORM */
-
-.card-form{
-margin-top:15px;
-display:flex;
-flex-direction:column;
-gap:10px;
 }
 
 input{
+width:90%;
 padding:10px;
+margin:10px 0;
 border-radius:6px;
 border:1px solid #ccc;
 }
 
-/* ORDER SUMMARY */
-
-.summary-box{
-flex:1;
-background:white;
-padding:25px;
-border-radius:15px;
-color:black;
-height:fit-content;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-.summary-box h3{
-margin-bottom:15px;
-}
-
-.summary-item{
-margin:8px 0;
-}
-
-.pay-btn{
-margin-top:20px;
-width:100%;
-padding:12px;
+button{
+margin-top:15px;
+padding:12px 30px;
 border:none;
 border-radius:25px;
 background:#1d3557;
@@ -96,107 +40,34 @@ font-size:16px;
 cursor:pointer;
 }
 
-.pay-btn:hover{
+button:hover{
 background:#e63946;
 }
-
-.secure{
-margin-top:10px;
-font-size:12px;
-color:gray;
-text-align:center;
-}
-
 </style>
 </head>
 
 <body>
 
-<h1>Secure Payment</h1>
+<h1>Passenger Details</h1>
 
-<div class="payment-wrapper">
+<div class="container">
+<label for="name">Name:</label><br>
+<input type="text" id="name" placeholder="Passenger Name" required>
+<label for="age">Age:</label><br>
+<input type="number" id="age" placeholder="Age" required>
+<label for="phone">Mobile Number:</label><br>
+<input 
+type="tel" 
+id="phone" 
+placeholder="Mobile Number" 
+pattern="[0-9]{10}" 
+maxlength="10"
+required
+>
 
-<!-- PAYMENT METHODS -->
+<br>
 
-<div class="payment-box">
-
-<div class="payment-method">
-<h3>Select Payment Method</h3>
-
-<label>
-<input type="radio" name="method" checked onclick="showCard()"> Credit / Debit Card
-</label>
-
-<label>
-<input type="radio" name="method" onclick="showUPI()"> UPI
-</label>
-
-<label>
-<input type="radio" name="method" onclick="showNet()"> Net Banking
-</label>
-
-</div>
-
-<!-- CARD PAYMENT -->
-
-<div id="cardSection" class="card-form">
-
-<input type="text" placeholder="Card Number" maxlength="16">
-
-<input type="text" placeholder="Card Holder Name">
-
-<div style="display:flex; gap:10px;">
-<input type="text" placeholder="MM/YY">
-<input type="text" placeholder="CVV" maxlength="3">
-</div>
-
-</div>
-
-<!-- UPI -->
-
-<div id="upiSection" style="display:none; margin-top:15px;">
-<input type="text" placeholder="Enter UPI ID (example@upi)">
-</div>
-
-<!-- NET BANKING -->
-
-<div id="netSection" style="display:none; margin-top:15px;">
-<select style="padding:10px;">
-<option>Select Bank</option>
-<option>SBI</option>
-<option>HDFC</option>
-<option>ICICI</option>
-<option>Axis Bank</option>
-</select>
-</div>
-
-<button class="pay-btn" onclick="payNow()">Pay Now</button>
-
-<div class="secure">
-🔒 Secure Payment Simulation
-</div>
-
-</div>
-
-<!-- ORDER SUMMARY -->
-
-<div class="summary-box">
-
-<h3>Order Summary</h3>
-
-<div class="summary-item">
-Bus: <span id="bus"></span>
-</div>
-
-<div class="summary-item">
-Seats: <span id="seats"></span>
-</div>
-
-<div class="summary-item">
-Total Amount: ₹<span id="total"></span>
-</div>
-
-</div>
+<button onclick="goPayment()">Continue to Payment</button>
 
 </div>
 
@@ -208,41 +79,23 @@ let bus = params.get("bus");
 let seats = params.get("seats");
 let total = params.get("total");
 
-document.getElementById("bus").innerText = decodeURIComponent(bus);
-document.getElementById("seats").innerText = decodeURIComponent(seats);
-document.getElementById("total").innerText = total;
+function goPayment(){
 
-function showCard(){
-document.getElementById("cardSection").style.display="flex";
-document.getElementById("upiSection").style.display="none";
-document.getElementById("netSection").style.display="none";
+let phone = document.getElementById("phone").value;
+
+if(phone.length !== 10){
+alert("Phone number must be exactly 10 digits");
+return;
 }
-
-function showUPI(){
-document.getElementById("cardSection").style.display="none";
-document.getElementById("upiSection").style.display="block";
-document.getElementById("netSection").style.display="none";
-}
-
-function showNet(){
-document.getElementById("cardSection").style.display="none";
-document.getElementById("upiSection").style.display="none";
-document.getElementById("netSection").style.display="block";
-}
-
-function payNow(){
-
-let ticketId = "TKT" + Math.floor(Math.random()*1000000);
 
 window.location.href =
-"ticket.html?bus=" + encodeURIComponent(bus) +
+"payment.html?bus=" + encodeURIComponent(bus) +
 "&seats=" + encodeURIComponent(seats) +
-"&total=" + total +
-"&ticket=" + ticketId;
+"&total=" + total;
 
 }
 
 </script>
 
 </body>
-</html> 
+</html>
